@@ -30,8 +30,8 @@ export default class Socket {
     });
 
     this._io.on('connect', () => resolve());
-    this._io.on('reconnect_error', this.disconnect);
-    this._io.on('disconnect', this.disconnect);
+    this._io.on('reconnect_error', () => this.disconnect());
+    this._io.on('disconnect', () => this.disconnect());
 
     return promise;
   }
