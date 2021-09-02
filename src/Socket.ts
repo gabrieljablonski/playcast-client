@@ -5,7 +5,9 @@ import { promisify } from './utils';
 
 export default class Socket {
   private _host: string;
+
   private _port: number;
+
   private _io?: TSocket;
 
   constructor(config: SocketConfig) {
@@ -13,7 +15,7 @@ export default class Socket {
     this._port = config.port;
   }
 
-  get connected() {
+  get connected(): boolean {
     return this._io?.connected;
   }
 
@@ -34,11 +36,11 @@ export default class Socket {
     return promise;
   }
 
-  disconnect() {
+  disconnect(): void {
     this._io?.disconnect();
   }
 
-  emit(event: string, data?: object): Promise<any> {
+  emit(event: string, data?: Record<string, unknown>): Promise<any> {
     const { promise, resolve, reject } = promisify<any>();
     if (!this.connected) {
       reject('socket not connected');
@@ -48,7 +50,7 @@ export default class Socket {
     return promise;
   }
 
-  on(event: string, callback: (arg?: any) => void) {
+  on(event: string, callback: (arg?: any) => void): void {
     this._io?.on(event, callback);
   }
 }

@@ -7,7 +7,7 @@ export interface File {
   path: string;
   name: string;
   parent: string;
-  type: "folder" | "file";
+  type: 'folder' | 'file';
   children: string[];
 }
 
@@ -58,7 +58,13 @@ interface PlaycastEventBase {
   anchored: boolean;
 }
 
-export type PlaycastClipStatus = "DELETED" | "READY" | "NEXT" | "PREROLL" | "PLAYING" | "PLAYED";
+export type PlaycastClipStatus =
+  | 'DELETED'
+  | 'READY'
+  | 'NEXT'
+  | 'PREROLL'
+  | 'PLAYING'
+  | 'PLAYED';
 
 export interface PlaycastClip extends PlaycastEventBase {
   filepath: string;
@@ -70,11 +76,11 @@ export interface PlaycastClip extends PlaycastEventBase {
   status: PlaycastClipStatus;
 }
 
-export type PlaycastActionType = "action" | "label" | "pause" | "custom-action";
+export type PlaycastActionType = 'action' | 'label' | 'pause' | 'custom-action';
 
 export interface PlaycastAction extends PlaycastEventBase {
   type: PlaycastActionType;
-  args: object;
+  args: Record<string, unknown>;
   preroll: number;
   scheduledTimestamp: number;
   scheduledDuration: number;
@@ -98,7 +104,7 @@ export interface NewPlaycastAction {
   type?: PlaycastActionType;
   refId?: string;
   name?: string;
-  args?: object;
+  args?: Record<string, unknown>;
   preroll?: number;
   scheduledTimestamp?: number;
   scheduledDuration?: number;
@@ -108,7 +114,7 @@ export interface NewPlaycastAction {
 
 export type NewPlaycastEvent = NewPlaycastClip | NewPlaycastAction;
 
-export type PlaycastBlockType = "regular" | "scte";
+export type PlaycastBlockType = 'regular' | 'scte';
 
 export interface PlaycastBlock {
   id: string;
@@ -150,8 +156,8 @@ interface PlaycastUnitProfile {
   colorspace: number;
 }
 
-export type PlaycastUnitState = "playing" | "paused" | "stopped" | "not_loaded";
-export type PlaycastUnitEof = "pause" | "pause-clip" | "stop" | "loop";
+export type PlaycastUnitState = 'playing' | 'paused' | 'stopped' | 'not_loaded';
+export type PlaycastUnitEof = 'pause' | 'pause-clip' | 'stop' | 'loop';
 
 export interface PlaycastUnitStatus {
   unit: number;
