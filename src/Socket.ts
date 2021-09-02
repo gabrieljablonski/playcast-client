@@ -24,6 +24,7 @@ export default class Socket {
     const host = `http://${this._host}:${this._port}`;
     this._io = io(host, {
       timeout: 5000,
+      transports: ['websocket'],
     });
 
     this._io.on('connect', () => resolve());
