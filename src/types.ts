@@ -17,8 +17,8 @@ export interface SocketConfig {
 }
 
 export interface PlaycastConnectionConfig {
-  host: string;
-  port: number;
+  host?: string;
+  port?: number;
 }
 
 export interface PlaycastBaseResponse {

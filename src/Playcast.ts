@@ -455,6 +455,12 @@ export default class Playcast {
     });
   }
 
+  listNdiSources(
+    unit: number,
+  ): Promise<PlaycastBaseResponse & { sources?: string[] }> {
+    return this._socket.emit('list-ndi-sources', { unit });
+  }
+
   getCommandQueue(unit: number): Promise<PlaycastBaseResponse> {
     return this._socket.emit('get-command-queue', { unit });
   }
