@@ -25,8 +25,8 @@ export default class Playcast {
     },
   ) {
     this._socket = new Socket({
-      host: connectionConfig.host,
-      port: connectionConfig.port,
+      host: connectionConfig.host || 'localhost',
+      port: connectionConfig.port || 8383,
     });
   }
 
