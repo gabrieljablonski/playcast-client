@@ -46,7 +46,9 @@ export default class Playcast {
     return this._socket.emit('version');
   }
 
-  getConfig(): Promise<PlaycastBaseResponse & { config?: string }> {
+  getConfig(): Promise<
+    PlaycastBaseResponse & { config?: Record<string, unknown> }
+  > {
     return this._socket.emit('get-config');
   }
 
