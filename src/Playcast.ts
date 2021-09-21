@@ -461,6 +461,12 @@ export default class Playcast {
     return this._socket.emit('list-ndi-sources', { unit });
   }
 
+  listSdiSources(
+    unit: number,
+  ): Promise<PlaycastBaseResponse & { sources?: number[] }> {
+    return this._socket.emit('list-sdi-sources', { unit });
+  }
+
   getCommandQueue(unit: number): Promise<PlaycastBaseResponse> {
     return this._socket.emit('get-command-queue', { unit });
   }
