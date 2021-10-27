@@ -29,9 +29,15 @@ export default class Socket {
       transports: ['websocket'],
     });
 
+    const reconnect = () => {
+      setTimeout(async () => {
+        await this.connect();
+      }, 1000);
+    };
+
     this._io.on('connect', () => resolve());
-    this._io.on('reconnect_error', () => this.disconnect());
-    this._io.on('disconnect', () => this.disconnect());
+    this._io.on('reconnect_error', () => reconnect());
+    this._io.on('disconnect', () => reconnect());
 
     return promise;
   }
